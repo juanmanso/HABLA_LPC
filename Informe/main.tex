@@ -1,0 +1,66 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}		% Configuro la codificación
+\input{config.tex}				% Archivo con los comandos globales como Título y autores
+\input{preamble.tex}
+\input{aux_functions.tex}		% Se proveen un conjunto de funciones extras
+
+% Defino el path de los includegraphics
+\graphicspath{{./Figuras/}}		% Directorio que contiene los graficos
+
+% Defino el path para los input de .tex y de .eps
+\makeatletter
+\def\input@path{{./Figuras/}{./Secciones/}{./Cover_page/}}
+\makeatother
+
+% Defino el path del listings
+\ifListings
+%% Cambiar el nombre de la carpeta si se utilizan Listings
+	\lstinputpath{{../Octave/}}
+\fi
+
+\definecolor{myred}{rgb}{0.5,0,0}
+\definecolor{mygreen}{rgb}{0,0.5,0}
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\begin{document}
+		% Carátula (formal o simple,_formal o _simple respectivamente) con Resumen
+		% incluido e Índice (si es necesario configurar en config.tex) del informe
+		\input{cover_formal.tex}
+	\setcounter{page}{1}
+
+	\part{Caracterización de la señal}
+		A continuación se realiza el cálculo de los coeficientes del filtro del tracto vocal y a partir del mismo caracterizar la señal entrante.
+
+%		\graficarPNG{bgraf_og_vs_recon}{Señal original versus la reconstrucción por LPC.}{fig:ogrecon}
+%		\graficarEPS{0.7}{graf_og_vs_recon}{Señal original versus la reconstrucción por LPC.}{fig:ogrecon}
+%		\graficarEPS{0.7}{graf_prueba}{Señal original versus la reconstrucción por LPC.}{fig:ogrecon}
+	
+		\section{Reconstrucción de una ventana}
+			\input{1_recon.tex}
+
+		\section{Análisis de envolventes}
+			\input{2_env.tex}
+
+			\pagebreak
+		\section{Espectograma}
+			\input{3_spec.tex}
+
+	\part{Codificación}
+		El objetivo del algortimo de \texttt{LPC} es la codificación de la señal de habla para facilitar su transimisión y recepción. Para ello se realiza el cálculo de coeficientes del filtro resultante de la modulación de las articulaciones. Con ésto y el error, se puede reconstruir la señal con cierta incertidumbre establecida por la precisión utilizada.
+
+		Cabe acalarar que el \emph{script} \texttt{ej3.m} genera gráficos que no permiten ver con claridad el efecto de las operaciones realizadas. Es por ésto que las comparaciones y gráficos se generan con la ventana previamente analizada.
+		
+		\section{Reconstrucción con redondeo}
+			\input{4_conRedon.tex}
+
+		\section{Compresión de la señal}
+			\input{5_comp.tex}
+	
+
+	\part{Conclusiones}\label{part:conclusiones}
+		\input{6_conclusiones.tex}
+
+	% \appendix
+\end{document}

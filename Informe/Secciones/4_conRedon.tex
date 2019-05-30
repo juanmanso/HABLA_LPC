@@ -1,0 +1,11 @@
+
+	La función de redondeo fue implementada de la siguiente manera:
+		\lstinputlisting{redondear.m}
+
+	A continuación se muestran los gráficos comparativos entre las distintas reconstrucciones. 
+		\HgraficarEPS{0.7}{graf_ogvsrecon_redon}{Comparación entre la señal original y las distintas reconstrucciones.}{fig:ogrecon_redon}
+
+	Se puede ver en la Figura \ref{fig:ogrecon_redon} que la señal reconstruida con 8 bits tiene un error apreciable en los picos de la señal. Al analizar la Figura \ref{fig:err_redon} se comprueba que el error de la codificación en 8 bits es apreciable pero muy pequeña, estando por debajo de \num{.03}.
+
+	Lo curioso es que la señal reconstruida sin redondeo presenta un error muy grande (llegando cerca de \num{.8}) cuando la misma debería ser la reconstrucción más precisa. Se puede ver que la curva del error se asemeja a la señal de error.
+		\HgraficarEPS{0.7}{graf_err_redon}{Comparación de las incertidumbres entre las distintas reconstrucciones.}{fig:err_redon}

@@ -1,0 +1,10 @@
+
+	El archivo de audio \emph{fantasia.wav} requirió en memoria \num{348800} bytes. Por lo tanto si se realizase una transmisión de dicho archivo completo, será muy costoso.
+
+	Si en cambio se utilizase una codificación de 8 bits y se enviasen los coeficientes LPC y la señal de error, el paquete pesaría:
+	\begin{align*}
+		{Memoria_{LPC}} &= {size}({LPC_{coef}}) + {size}(err8)\\
+		&= \num{41192}{ bytes} + \num{3208}{ bytes} = \num{44400}{ bytes}
+	\end{align*}
+
+	De esta manera se logra comprimir un archivo de \num{348800} bytes a uno de \num{44400} (se comprimió a un 12\%).

@@ -1,0 +1,45 @@
+
+
+%
+%	Notas mientras leo:
+%	Que la expansión sea ortonormal tiene inherente que será tiempo-variante. Las Hann y Sinc no son TI pero son periodicamente tiempo-variables.
+%	Un sistema que es submuestreado seguido de una sobremuestreo es del tipo periodicamente tiempo-variable con periodo N, donde N es el factor de sub/sobremuestreo.
+%	Para analizar dichos sistemas existe una herramienta simple pero útil, donde la secuencia se mapea en N secuencias con diferente fase. Dicha transformación (transformación polifásica de tamaño N) se obtiene generando las secuencias como un corrimiento temporal en $i$ seguido de un submuestreo $N$.
+%	La componente de señal polifásica se define entonces como:
+%		\begin{equation*}
+%			x_i[n] = x[nN+i]
+%		\end{equation*}
+%
+%		\begin{equation*} %2.5.20
+%			X(z)= \sum^{N-1}_{i=0} z^{-i} \, X_i(z^N)
+%		\end{equation*}
+%		con
+%		\begin{equation*} %2.5.21
+%			X_i(z)=\sum^{\infty}_{n=-\infty} x[nN+ i]\, z^{-n}
+%		\end{equation*}
+%
+%		\begin{equation*} %2.5.22
+%			H(z)= \sum^{N-1}_{i=0} z^i \, H_i(z^N)
+%		\end{equation*}
+%
+%		\begin{equation*} %2.5.23
+%			H_i(z)=\sum^{\infty}_{n=-\infty} h[nN- i]\, z^{-n}, \quad i = 0,\hdots,N-1 
+%		\end{equation*}
+%
+%	La subsección de Dominio polifásico habla formalmente como probar que es una reconstrucción perfecta con la perspectiva polifásica, es basntate directo.
+%
+%	Relación entre los dominios:
+%		Se prueba que todas las respresnetaciones son válidas. Sección únicamente para poder demostrar lo que está por venir.
+%
+%	Conclusiones y propiedades tras el análisis multidominio:
+%		La reconstrucción más importante es la libre de \emph{alias}, es decir que dado a la naturaleza de los sistemas periodicamente tiempo-vairantes, la salida depende no sólo de la entrada sino también de su versión modulada por $(-1)^n$. En términos de la transformada $z$, depende de $X(z)$ y también de $X(-z)$ imponiendo una distorsión no-harmónica llamada aliasing. 
+%
+%		Se prueba que se puede cancelar el aliasing si la matriz transferencia es \emph{pseudocirulant}. En español significa que las filas de la matriz tienen los coeficientes con el mismo orden (pero corridos) y la matriz triangular inferior se la multiplica por $z$.\\
+%		\indent Un corolario de la proposición es que la matriz de función transferencia tiene que ser un delay pseudocirculante, es decir que si el delay es par debe ser una matriz identidad por $z^{-k/2}$ y si es impar es la antiidentidad pero con la matriz triangular superior con el delay de la mitad redondeado para arriba y la inferior, para abajo.
+%
+%		Sii se hace un submuestreo de N y el filtro de análisis polifásico es de rango N, es decir determinante no nulo, entonces la reconstrucción es perfecta y sin aliasing.
+%
+%		En el caso de un filtro FIR, la reconstrucción es perfecta sii el determinante de $H_p(z)$ es un delay puro.
+%
+%		Método de QMF (quadrature mirror filters) cancela el aliasing en filtro de 2 canales. Quiere decir que $H(z)$ es la imagen espejada de $H(-z)$, y ambas están elevadas al cuadrado diciendo que la diferencia de ambas es una constante de escala y un delay. Para los filtros FIR la condición que imponen los QMF sólo la cumplen los filtros de Haar. Para filtros de fase lineal el resultado sólo puede aproximarse.
+%

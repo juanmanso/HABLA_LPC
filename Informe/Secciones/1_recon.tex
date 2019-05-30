@@ -1,0 +1,11 @@
+
+	La señal a caracterizar es procesada bajo el algoritmo de LPC, iterando con muestras de \SI{0.025}{\s} para generar los coeficientes LPC que se la asignan a los primeros \SI{.01}{\s}. La función LPC fue implementada en \emph{Octave} de la siguiente manera:
+	\lstinputlisting{funcionlpc.m}
+
+	Tras el cálculo de coeficientes, utilizando la función \texttt{filter()} se reconstruye la señal ventaneada. En la Figura \ref{fig:ogrecon} se exponen la señal original y reconstruida por LPC.
+
+		\graficarEPS{0.7}{graf_og_vs_recon}{Señal original versus la reconstrucción por LPC.}{fig:ogrecon}
+
+ Al igual que en la Figura \ref{fig:ogrecon}, se puede ver en la Figura \ref{fig:err} que hay pequeñas diferencias cerca de los picos de la curva pero en general sigue a la original con precisión (difiere como mucho en \num{0.09}). Otra característica importante que revela el análisis del error en la Figura \ref{fig:err} es la frecuencia glótica, dado que se supuso una entrada de ruido blanco y por tanto (al estar relacionado con el pulso glótico) se expone como error.
+		\graficarEPS{0.7}{graf_err}{Error de estimación de la reconstrucción por LPC.}{fig:err}
+%	\lstinputlisting[linerange=Resultados- ]{ej_3.m}
